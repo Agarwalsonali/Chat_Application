@@ -23,7 +23,7 @@ io.on('connection', (socket)=>{
 
     const userId = socket.handshake.query.userId;
     if(userId){
-        userSocketMap(userId) = socket.id;
+        userSocketMap[userId] = socket.id;
     }
 
     //io.emit() is used to send events to all the connected clients
