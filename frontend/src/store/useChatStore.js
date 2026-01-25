@@ -22,14 +22,22 @@ export const useChatStore = create((set, get)=>({
         }
     },
 
-    getMessages: async()=>{
+   getMessages: async () => {
+        const { selectedUser } = get();
+        if (!selectedUser) return;
+
         set({ isMessageLoading: true });
-        try{
-            const res = await axiosInstance.get(`/messages/${userId}`);
-            set({ messages: res.data })
-        }catch(error){
-            toast.error(error.response.data.message)
-        }finally{
+
+        try {
+            const res = await axiosInstance.get(
+            `/messages/${selectedUser._id}`
+            );
+            set({ messages: res.data });
+        } catch (error) {
+            toast.error(
+            error?.response?.data?.message || "Failed to load messages"
+            );
+        } finally {
             set({ isMessageLoading: false });
         }
     },
