@@ -78,7 +78,7 @@ Chat-Application/
 - cd backend
 - npm install
 
-- MONGO_URI=your_mongodb_uri
+- MONGO_URI=your_mongodb_url
 - JWT_SECRET=your_secret_key
 
 - npm run dev
